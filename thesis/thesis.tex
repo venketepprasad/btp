@@ -180,11 +180,12 @@ Set of elements from $\{1,2,...,n-1,n\}$ can form different permutations. Our ma
 \textbf{Block Sorting:}\\
 Given a permutation $\pi$, it can be written as $\pi_1\pi_2.....\pi_{n-1}\pi_{n}$ where each $\pi_i \in [1,n]$ $\forall i$. A \textbf{Block} is defined as a contiguous sequence in $\pi$ such that elements are in the same order as in $id_n$, which is the Identity permutation. Now sorting a given $\pi$ with only block moves is block sorting. Finding minimum number of moves to obtain $id_n$ is a challenge which is proved to be NP-hard. The minimum number of moves is denoted as $bs(\pi)$.\\
 \textbf{Example:}\\
-Lets assume the permutation $\pi$ = $9,6,7,8,3,4,1,2,5.$ There are 5 blocks: (9),(6,7,8),(3,4),(1,2) and (5). The optimal moves which give $id_n$ is by moving block (3,4) between (1,2) and (5), hence obtaining 3 blocks (9),(6,7,8) and (1,2,3,4,5). Now by moving (9) to end of (6,7,8) followed by moving (6,7,8,9) to the end of (1,2,3,4,5) gives us $id_n$ in 3 moves.\\~\\
-
+Lets assume the permutation $\pi$ = $9,6,7,8,3,4,1,2,5.$ There are 5 blocks: (9) 	(6,7,8)(3,4)(1,2) and (5). The optimal moves which give $id_n$ is by moving block (3,4) between (1,2) and (5), hence obtaining 3 blocks (9)(6,7,8) and (1,2,3,4,5). Now by moving (9) to end of (6,7,8) followed by moving (6,7,8,9) to the end of (1,2,3,4,5) gives us $id_n$ in 3 moves.\\~\\
+\noindent
 A \textbf{Kernel} of a permutation is a reduced form of $\pi$ in which each block is represented as a single element which is the rank of that block in $ker(\pi)$.\\
 \textbf{Example:}\\
-Lets assume the permutation $\pi$ = 9,6,7,8,3,4,1,2,5. There are 5 blocks: (9),(6,7,8),(3,4),(1,2) and (5). The rank of the blocks are respectively 5,4,2,1,3. So $ker(\pi)$ = 5,4,2,1,3.\\
+Lets assume the permutation $\pi$ = 9,6,7,8,3,4,1,2,5. There are 5 blocks: (9)
+(6,7,8)(3,4)(1,2) and (5). The rank of the blocks are respectively 5,4,2,1,3. So $ker(\pi)$ = 5,4,2,1,3.\\
 It has been proved that $bs(ker(\pi)) = bs(\pi)$. The proof is simple that any move in $\pi$ can be mimicked(equivalent move) in $ker(\pi)$ and vice-a-versa.\\~\\
 \noindent
 \textbf{3 - approximation for block sorting:} 
@@ -198,7 +199,7 @@ For any block move described above the number of blocks reduce by minimum of 1 a
 \end{enumerate}
 In $id_n$, there is only one block, So we have to reduce $Blocks(\pi)$ to 1. Since any block move can reduce it only 3, $bs(\pi) \geq \frac{Blocks(\pi) - 1}{3}$. By following the procedure described each time we reduce $Blocks(\pi)$ by at least 1. Lets denote number of moves as described in the procedure as $bs-app(\pi)$ and $bs-app(\pi) \leq Blocks(\pi)-1 \leq 3bs(\pi)$. Hence the procedure described is in fact a 3 approximation for Block sorting.\\~\\
 \noindent
-\textbf{$K-$Block Merging:}\\
+\textbf{\textit{K-}Block Merging:}\\
 This problem is similar to block sorting but with more restriction in the moves allowed.\\
 Any permutation $\pi$ is represented as a partition of sets S = $\{S_1,S_2,...,S_n\}$, where each set $S_i$ is the maximum increasing sequence of the permutation left after $S_{i-1}$ is formed. The block definition is same as the one in block sorting. But we can move a block only if it spans at most $K$ non-empty sets. A block move is removing a block and inserting it in one of the sequences such that the sequence remains as an increasing one.  The final aim is to minimum number of moves to get a single block which spans at most $K$ non-empty sets. The minimum number of moves is represented as $bm(\pi)$.\\
 \textbf{Example of 2-Block Merging:}\\
@@ -210,7 +211,7 @@ If we are given a permutation $\pi$ = $\{4,5,12,2,3,6,7,8,1,9,10,11\}$, the set 
 \end{enumerate}
 
 \chapter{Approximation algorithm for Block sorting}
-\section{Approximation of Block sorting using $K-$ block merging}
+\section{Approximation of Block sorting using \textit{K-}block merging}
 \textbf{Theorem:} $K-$Block merging approximates Block sorting by a factor of $(1+\frac{1}{K})$.\\
 \textbf{Proof:}\\
 The Idea of this proof is to make all the moves in optimal block sorting(call it P1) in $K-$Block merging(call it P2). If the block move made in P1 is possible in P2, then make the move in P2. Otherwise merge the blocks in P2 so that the block moved in P1 only spans at most $K$ non-empty sequences in P2. Hence P2 has some extra moves because of the merging step. Now it is left to scrutinize the number of moves required.\\
@@ -328,7 +329,111 @@ Now as we know that $bm(\pi) = n-1-C(S)$ and how to find a move which results in
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+\noindent
+\textbf{2-Approximation is a tight bound for Block sorting using 1-Block merging:}\\
+To prove the above claim it is enough to prove for a generalised example for which the algorithm gives 2-approximation. The example we are considering is described as follows:
+\[ \pi(i) = \begin{cases} 
+      \frac{i+1}{2} & \text{if i is odd} \\
+      \frac{n+i}{2} & \text{i is even} \\
+   \end{cases}
+\]
+If the set of elements are from $[1,n]$, then the $\pi = \{1,\frac{n}{2}+1,2,\frac{n}{2}+2,....,\frac{n}{2},n\} $. When we split this permutation into set of sequences, Then $S$ = $\{(1,\frac{n}{2}+1),(2,\frac{n}{2}+2),(3,\frac{n}{2}+3)... (\frac{n}{2},n)\}$. The above set $S$ forms an input to 1-block merging. The Digraph for the above described sequence is shown below
+\begin{figure}[htpb]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{2approxtight.eps}
+    \caption {Digraph}
+  %\label{fig:iitm}
+  \end{center}
+\end{figure}
+\noindent
+As we can see every edge crosses every other edge. So $C(S) = 1$, which means we can take only one edge in the non-crossing set. As we have proved before that the 2 - approximation algorithm takes exactly $n-1-C(S)$ ($(i.e)$ $n-2$) steps to complete the sorting procedure.\\
+Now it is left to prove that the optimal procedure sorts the sequence in $\frac{n}{2} - 1$ steps. Without loss of generality assume that the non-crossing edge is $(\frac{n}{2},n)$. So all the blocks from 1 to $\frac{n}{2} - 1$ are free and similarly all blocks from $\frac{n}{2} - 1$ to $n-1$ are free. Lets move these blocks with one elements from $\frac{n}{2} + 1$ to $n-1$, to their predecessors. this will increase $C(S)$ by one with each move finally resulting in $1,2,...,n$. Optimal algorithm sorts it in  $\frac{n}{2} - 1$ steps, but the $2-$approximation algorithm takes \textit{n} steps. So this 2-approximation is tight.\\
+The optimal moves are all valid moves even in 1-block merging, which will result with $S = \{(1),(2),(3)...(\frac{n}{2}-1),(\frac{n}{2},...,n-1,n)\}$. The remaining $\frac{n}{2} - 1$ steps are to make all the elements to be in a single sequence.\\~\\
+\textbf{Lower Bound for \textit{K-}block merging:}\\
+Lemma 2.1 proves that $C(S') \leq C(S) + 1$, for any valid block move in 1-block merging. So if we follow the similar analysis for $K-$block merging, the block moves are similar both in 1-block merging and $K-$block merging except that the block can span over $K$ sequences.\\~\\
+\textbf{Lemma 2.4:}\\
+For any valid block move in $K-$block merging which makes a move from $S$ to $S'$, then $C(S') \leq C(S) + k.$\\
+\textbf{Proof:}\\
+The changes in the non-crossing edge due to movement of block from source to destination are same as the one described for $1-$block merging. The additional power in $K-$block merging is that we can take a block spanning $K$ sequences. So the block spanning $K$ sets can be transferred to a single sequence, Due to these moves there can be additional $K-1$ unit edges added. These unit edges are between the last element of previous sequence and first element of next sequence. There are $K-1$ such pairs and each pair was not there initially because elements belonged to different sequences. So in addition to $C(S) + 1$ there can be $K-1$ edges in $C(S')$. So $C(S') \leq C(S) + K$. 
+\\
+By Lemma 2.4, any valid move can only increases $C(S)$ by $K$. So to reach $n-1$, we need at least $\frac{n-1-C(S)}{K}$ moves.
+$$K-bm(\pi) \geq \frac{n-1-C(S)}{K}$$
 
+\section{Upper bound and Lower bound on block merging}
+Block merging approximates block sorting by a factor of 2, so $bs(\pi) \leq n-1-C(S) \leq 2bs(\pi)$. From the second inequality, $bs(\pi) \geq \frac{n-1-C(S)}{2}$, in addition to that we know $k-bm(\pi) \geq bs(\pi)$ because all the moves that can be made in $K-$block merging can be made in block sorting. So combining the 2 inequalities,
+$$K-bm(\pi) \geq \frac{n-1-C(S)}{2}$$
+This bound proves to be a tighter lower bound when compared to the previous one.\\~\\
+Upper bound for $K-$Block merging with respect to $C(S)$ is $n-1-C(S)$ because for all block related sorting including block sorting take $n-1-C(S)$ moves to sort a reverse permutation.
+
+$$K-bm(\pi) \leq n-1-C(S)$$
+
+
+
+\chapter{Optimal Block Sorting}
+The algorithm construction for optimal block sorting begins with a graph construction similar to the graph for block merging. Since a block can be picked only within a sequence in block merging, we added edges within a sequence. Now with block sorting, we can move any block to any place. \\
+\textbf{Order Graph:}\\
+Order graph of a permutation $\pi$ is a graph with $N$ vertices where each vertex is an element in permutation. Edge set $E_{\pi}$ = $\{ (u,v) | (u<v) \land (\pi_{u}^{-1} < \pi_{v}^{-1})\}$.\\
+\begin{enumerate}
+    \item Two edges $(u,v)$ and $(w,x)$ are said to interleave if they either interleave by value $u\leq w<v\leq x$  or they interleave by position $\pi_{u}^{-1}\leq \pi_{w}^{-1}<\pi_{v}^{-1}\leq \pi_{x}^{-1}$
+    \item An edge $(u,v)$ is said to contain $(w,x)$, if it contains either by value $u<w<x<v$ or by position $\pi_{u}^{-1} < \pi_{w}^{-1} < \pi_{x}^{-1}< \pi_{v}^{-1}$. 
+    \item Any $C\subseteq E_{\pi}$, inclusion graph $G(C,\pi)$ = $\{ ((u,v),(w,x)) |$ if $(u,v)$ contains $(w,x)\}$
+    \item $C\subseteq E_{\pi}$ is said to be a compatible set if no two edges in $C$ interleave each other and $G(C,\pi)$ is acyclic.
+    \item $c_{\pi}$ is size of maximum cardinality compatible set. 
+\end{enumerate}
+
+%\textbf{Example:} Example is to be added...
+\noindent
+\textbf{Lemma 3.1:}\\
+Every compatible edge set $C$ contains all unit edges from $E_{\pi}$.\\~\\
+\textbf{Lemma 3.2:}\\
+Let $\alpha$ be a free block with respect to $C$. For any valid block move using $\alpha$ from a permutation $\pi$ to obtain $\sigma$, then $c_\sigma \geq c_\pi$.\\
+\textbf{Proof:}\\
+The definition of free block is a block which has all edges originate and end within the block (same as the definition for block merging). Moving a block will not affect anything with respect to value. Consider all the edges in $C$. In $\sigma$ the only change is the block position. A block has full of unit edges in it. Relation between all other edges remain the same. Now consider all the edges from $C$ in $\sigma$, the only change is unit edges corresponding to $\alpha$. None of the edges in $C$ interleave by position because they are unit edges. Consider $G(C,\sigma)$, new edges added on $G(C,\pi)$ are the edges that can contain unit edges of $\alpha$ (certain edges were also deleted). Since no edge can leave from $(u,u+1)$ in $G(C,\sigma)$, the added edges cannot contribute to cycle. Hence showing $G(C,\sigma)$ is acyclic, so $C$ is a compatible set in $\pi$, so $c_\sigma \geq c_\pi$. If the block is moved to its predecessor or successor then one more unit edge will be added so $c_\sigma > c_\pi$\\~\\
+\noindent
+\textbf{Lemma 3.3:}\\
+For any valid block move from $\pi$ to $\sigma$, $c_\sigma \geq c_\pi - 1$\\
+\textbf{Proof:}\\
+For the case of free block move, Lemma 3.2 is the proof. Let $m$ denote the number of edges incident or originated from block $B$ in $\pi$.\\
+\textbf{Case \textit{m} = 1:}\\
+Let $(u,v)$ be the edge that is incident on the block B. Consider $C' = C\backslash (u,v)$. $C'$ is a compatible set for $\sigma$ because of the same reasons given in Lemma 3.2.\\
+\textbf{Case \textit{m} = 2:}\\
+Let $B = \{v,v+1,v+2,....,w\}$ and let the 2 edges touching $B$ be $(u,v)$ and $(w,x)$. Consider $C' = C\backslash ((u,v)\cup(w,x))$ , $C'' = C' \cup (u,x)$. The remaining of the proof is to prove that $C''$ is a compatible set in $\sigma$. The newly added edge $(u,x)$ is not interleaved by value. If there were any edge interleaving $(u,x)$, the same edge might have interleaved one of $(u,v)$, unit edges in $B$ and $(w,x)$. So one edge in $C'$ interleaves $(u,x)$ by value. The relative position of all the elements remain the same except for the edges of $B$, which was moved. So if $(u,x)$ had to be interleaved by position it should be with one of the edges in $B$. That is not possible because they are all unit edges. So $(u,x)$ is not interleaved by any other edges in $C''$. It is left to prove that $G(C'',\sigma)$ is acyclic.\\ There is no cycle in $G(C'',\sigma)$. 2 edges were deleted and an edge $(u,x)$ was added. Only addition of edge $(u,x)$ could possibly create a cycle. Assume this addition creates a cycle. In the cycle, let $((a,b),(u,x),(c,d)$ be a path. So $(a,b)$ contains $(u,x)$ and $(u,x)$ contains $(c,d)$. If $(u,x)$ contain $(c,d)$ then one among $(u,v)$, $(w,x)$ contain $(c,d)$ lets call it edge $q$. $(a,b)$ contains $(u,x)$, so $(a,b)$ contains $q$. So now we have found a cycle without $(u,x)$ where the path in cycle is $((a,b),q,(c,d)$ instead of $((a,b),(u,x),(c,d)$. So this proves there is a cycle in $G(C,\pi)$ if there is a cycle in $G(C'',\sigma)$. Since $G(C,\pi)$ is acyclic, $G(C'',\sigma)$ is also acyclic. By showing $G(C'',\sigma)$ is acyclic, we prove $C''$ is a compatible edge set. $|C''| = |C| - 1$. Therefore $c_\sigma \geq c_\pi - 1$.\\~\\
+\noindent
+\textbf{Lemma 3.4:}\\
+For any valid block move from $\sigma$ to obtain $\pi$, $c_\pi \leq c_\sigma + 1$\\
+\textbf{Proof:}\\
+This is straightforward proof from Lemma 3.3, just revert the block move from $\sigma$ to obtain $\pi$ and the result follows.\\~\\
+\noindent
+\textbf{Lemma 3.5:}\\
+We can always find a free block with respect to $C$ unless $\pi \neq id_n$.\\
+\textbf{Proof:}\\
+If $C$ has full of unit edges then all the blocks are free. So we can take any block. But if $C$ has at least one non-unit edge, then consider the graph $G(C',\pi)$, where $C'$ is $C$ without unit edges. Find an edge in $G(C',\pi)$ which does not have an out edge, lets call it $(u,v)$. $(u,v)$ does not contain non-unit edge of $C$. If $i = \pi^{-1}_u$ , $j = \pi^{-1}_v$. So all the edges between the vertices of set $\{u+1,...,v-1\}$, because all those edges are contained by $(u,v)$. Similarly for all the edges between the vertices of set $\{\pi_{i+1},\pi_{i+2},....\pi_{j-2},\pi_{j-1}\}$. Since all the edges in these 2 sets are unit edges, any block in this set is a free block. Moreover $\{u+1,...,v-1\}$ is a non-empty set as $(u,v)$ is not an unit edge. So we can definitely find a free block with respect to $C$.\\~\\
+\textbf{Theorem:}\\
+For all $\pi$, $bs(\pi) = n-1-c_{\pi}$.\\
+\textbf{Proof:}\\
+Using Lemma 3.4 we know that $c_\pi \leq c_\sigma + 1$ for any block move from $\pi$ to $\sigma$. From Lemma 3.5 we know that we can always find one such move to increase $c_{\pi}$ by 1. If $m_1,...,m_x$ be the $x$ moves done in total to obtain $id_n$ where $i^{th}$ move increases the $c^i_{\pi}$ by 1 $(c^0_{\pi} = c_{\pi})$.  $$c_{\pi} + x = n-1$$ $$x = n-1-c_{\pi}$$. 
+
+
+\begin{algorithm}
+\caption{Optimal Block Sorting}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Block Sort($\pi$,$C$)}{}
+\State \textbf{Input: } $\pi \text{ is a permutation and }\textit{C} \text{ is a Maximum Compatible edge set for } \pi$ 
+\While{$\pi$ $\neq$ id$_n$} 
+\State $\textit{B} \gets \text{Free block with respect to }\textit{C}$
+\State $\text{Let } u,v \text{ be the first and last element of the block respectively}$
+\If {$\textit{B}$ has a successor } 
+\State $\text{Merge } \textit{B} \text{ with its successor}$
+\State $\forall (l,v+1) \in C, C = C\cup(l,v) \text{ and } C=C\backslash(l,v+1) $
+\State $C = C\cup(v,v+1)$.
+\Else
+\State $\text{Merge } \textit{B} \text{ with its predecessor}$
+\State $C = C\cup(u-1,u)$
+\EndIf
+\EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex 2018.4.23)  24 APR 2018 19:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex 2018.4.23)  25 APR 2018 00:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -335,7 +335,11 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip51
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (./thesis.aux)
+) (./thesis.aux
+
+LaTeX Warning: Label `euclid' multiply defined.
+
+)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -450,48 +454,27 @@ CHAPTER 1.
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 179--184
+Underfull \hbox (badness 10000) in paragraph at lines 179--195
 
  []
 
 
-Overfull \hbox (59.29483pt too wide) in paragraph at lines 179--184
-\T1/cmr/m/n/12 Lets as-sume the per-mu-ta-tion $\OML/cmm/m/it/12 ^^Y$ \T1/cmr/m
-/n/12 = $\OT1/cmr/m/n/12 9\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 6\OML/cmm/m/it/12 
-; \OT1/cmr/m/n/12 7\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 8\OML/cmm/m/it/12 ; \OT1/
-cmr/m/n/12 3\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 4\OML/cmm/m/it/12 ; \OT1/cmr/m/n
-/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 5\O
-ML/cmm/m/it/12 :$ \T1/cmr/m/n/12 There are 5 blocks: (9),(6,7,8),(3,4),(1,2)
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 179--184
+Underfull \hbox (badness 10000) in paragraph at lines 179--195
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--184
+Underfull \hbox (badness 10000) in paragraph at lines 179--195
 
  []
 
-[2]
-Overfull \hbox (45.45108pt too wide) in paragraph at lines 185--194
-\T1/cmr/m/n/12 Lets as-sume the per-mu-ta-tion $\OML/cmm/m/it/12 ^^Y$ \T1/cmr/m
-/n/12 = 9,6,7,8,3,4,1,2,5. There are 5 blocks: (9),(6,7,8),(3,4),(1,2)
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--194
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 199--206
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 200--207
 
  []
 
 
-Overfull \hbox (39.55458pt too wide) in paragraph at lines 207--208
+Overfull \hbox (39.55458pt too wide) in paragraph at lines 208--209
 []\T1/cmr/m/n/12 Move the block (1) to (2,3,6,7,8) to ob-tain $\OML/cmm/m/it/12
  S[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (4\OML/cmm/m/it/12 ; \
 OT1/cmr/m/n/12 5\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 12)\OML/cmm/m/it/12 ; \OT1/c
@@ -503,7 +486,7 @@ m/m/it/12 ; \OT1/cmr/m/n/12 10\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 11)\OMS/cmsy/m
  []
 
 
-Overfull \hbox (16.75061pt too wide) in paragraph at lines 209--210
+Overfull \hbox (16.75061pt too wide) in paragraph at lines 210--211
 []\T1/cmr/m/n/12 Now mov-ing (1,2,3) to its suc-ces-sor gives $\OML/cmm/m/it/12
  S[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (1\OML/cmm/m/it/12 ; \
 OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 3\OML/cmm/m/it/12 ; \OT1/cmr
@@ -516,12 +499,6 @@ it/12 ; \OT1/cmr/m/n/12 11\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 12)\OMS/cmsy/m/n/1
 
 [4]
 CHAPTER 2.
-
-Overfull \hbox (5.42194pt too wide) in paragraph at lines 213--213
-[]\T1/cmr/bx/n/17.28 Approximation of Block sort-ing us-ing $\OML/cmm/m/it/17.2
-8 K\OMS/cmsy/m/n/17.28 ^^@$ \T1/cmr/bx/n/17.28 block
- []
-
 [5
 
 ]
@@ -529,12 +506,12 @@ File: digraph1.eps Graphic file (type eps)
  <digraph1.eps>
 File: digraph2.eps Graphic file (type eps)
  <digraph2.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 225--257
+Underfull \hbox (badness 10000) in paragraph at lines 226--258
 
  []
 
 
-Overfull \hbox (47.283pt too wide) in paragraph at lines 225--257
+Overfull \hbox (47.283pt too wide) in paragraph at lines 226--258
 \T1/cmr/m/n/12 Lets as-sume the per-mu-ta-tion $\OML/cmm/m/it/12 ^^Y$ \T1/cmr/m
 /n/12 = 9,6,7,8,3,4,1,2,5. The set $\OML/cmm/m/it/12 S \OT1/cmr/m/n/12 = \OMS/c
 msy/m/n/12 f\OT1/cmr/m/n/12 (9)\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (6\OML/cmm/m/
@@ -545,61 +522,111 @@ m/n/12 5)\OMS/cmsy/m/n/12 g$
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 284--289
+Underfull \hbox (badness 10000) in paragraph at lines 285--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
+[8]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 306.
+put line 308.
 
-Overfull \hbox (15.99237pt too wide) in paragraph at lines 309--310
+Overfull \hbox (15.99237pt too wide) in paragraph at lines 311--312
 [] \T1/cmr/bx/n/12 In-put:  $\OML/cmm/m/it/12 ^^Y[][][]^^Y$ 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 295--330
+File: 2approxtight.eps Graphic file (type eps)
+<2approxtight.eps>
+Underfull \hbox (badness 10000) in paragraph at lines 339--360
 
  []
 
-[8] [9] [10]
+
+Underfull \hbox (badness 10000) in paragraph at lines 339--360
+
+ []
+
+[9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 364--367
+
+ []
+
+[12]
+CHAPTER 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--414
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--414
+
+ []
+
+[13
+
+] [14] [15]
+Overfull \hbox (12.92094pt too wide) in paragraph at lines 421--422
+[] \T1/cmr/bx/n/12 In-put:  $\OML/cmm/m/it/12 ^^Y[][][]^^Y$ 
+ []
+
+[16]
 APPENDIX A.
-(./thesis.bbl [11
+(./thesis.bbl [17
 
 ]
 
 Package natbib Warning: Empty `thebibliography' environment on input line 7.
 
-) [12
+) [18
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 362.
- [13
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 468.
+ [19
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 362.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 468.
  (./thesis.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 362.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 362.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 362.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 468.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 468.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 468.
  )
 (\end occurred when \ifx on line 161 was incomplete) 
 Here is how much of TeX's memory you used:
- 7675 strings out of 492991
- 114840 string characters out of 6135031
- 215084 words of memory out of 5000000
+ 7677 strings out of 492991
+ 114874 string characters out of 6135031
+ 218123 words of memory out of 5000000
  11125 multiletter control sequences out of 15000+600000
- 17073 words of font info for 42 fonts, out of 8000000 for 9000
+ 17334 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,13n,40p,1190b,409s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,13n,40p,1710b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on thesis.dvi (22 pages, 38496 bytes).
+Output written on thesis.dvi (28 pages, 58076 bytes).
