@@ -71,7 +71,8 @@ Date: 30th April 2018
 % Acknowledgements
 \acknowledgements
 
-Thanks to all those who made \TeX\ and \LaTeX\ what it is today.
+I would like to express my gratitude to \textbf{Dr. N S Narayanaswamy} for guiding me throughout this project in both research and writing thesis. \\
+I would also like to thank my parents and sister for constanly supporting me mentally and spiritually throughout the project and my life.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abstract
@@ -111,16 +112,16 @@ institute guidelines.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Abbreviations
-\abbreviations
+%\abbreviations
 
-\noindent 
-\begin{tabbing}
-xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
-\textbf{IITM}   \> Indian Institute of Technology, Madras \\
-\textbf{RTFM} \> Read the Fine Manual \\
-\end{tabbing}
+%\noindent 
+%\begin{tabbing}
+%xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
+%\textbf{IITM}   \> Indian Institute of Technology, Madras \\
+%\textbf{RTFM} \> Read the Fine Manual \\
+%\end{tabbing}
 
-\pagebreak
+%\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Notation
@@ -131,9 +132,12 @@ xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
 \begin{singlespace}
 \begin{tabbing}
 xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
-\textbf{$r$}  \> Radius, $m$ \\
-\textbf{$\alpha$}  \> Angle of thesis in degrees \\
-\textbf{$\beta$}   \> Flight path in degrees \\
+\textbf{$\pi$}  \> Permutation \\
+\textbf{$bm(\pi)$}  \> Block Merging Distance for a permutation $\pi$ \\
+\textbf{$bs(\pi)$}   \> Block Sorting Distance for a permutation $\pi$ \\
+\textbf{$ker(\pi)$}  \> Kernel of a Permutation\\
+\textbf{$C(S)$}  \> Cardinality of maximum non-crossing edge set \\
+\textbf{$c_{\pi}$}  \> Cardinality of maximum compatible edge set \\
 \end{tabbing}
 \end{singlespace}
 
@@ -228,27 +232,27 @@ $K-$Block merging is proved to be NP hard for $K \geq$ 2 by reducing $MAX-E3-SAT
 \textbf{Construction of Digraph G:}\\
 Let the sequences $S = \{S_1,S_2 .. S_{n-1},S_n\}$ correspond to $\pi$. V, the vertex set of G consists of all the elements in the permutation. The edge set E  = $\{(u,v)| u<v$ and $\exists i\in [1,n], u \in S_i$ and $v \in S_i \}$.\\
 \textbf{Example:}\\
-Lets assume the permutation $\pi$ = 9,6,7,8,3,4,1,2,5. The set $S = \{(9),(6,7,8),(3,4),(1,2,5)\}$
+Lets assume the permutation $\pi$ = 9,6,7,8,3,4,1,2,5. The set $S = \{(9),(6,7,8),(3,4),(1,2,5)\}$. Fig~\ref{fig:digraph} shows Digraph for the permutation. 
 \begin{figure}[htpb]
   \begin{center}
   \includegraphics[width=0.7\textwidth]{digraph1.eps}
     %\resizebox{100mm}{!} {\includegraphics *{digraph1.png}}
     %\resizebox{50mm}{!} {\includegraphics *{iitm.eps}}
     \caption {Digraph for the above example.}
-  %\label{fig:iitm}
+  \label{fig:digraph}
   \end{center}
 \end{figure}
 \\
 \noindent
 \textbf{Largest Non-crossing set: $C(S)$}\\
-2 edges $(u,v)$ and $(w,z)$ are said to cross each other if $u\leq w < v \leq z$ or $w\leq u < z \leq v$. An edge set E' is said to be non-crossing if no 2 edges in the set cross each other. The size of the maximal non-crossing edge set is denoted as $C(S).$ $C(S)$ for the example is 5, the red edges shown below.
+2 edges $(u,v)$ and $(w,z)$ are said to cross each other if $u\leq w < v \leq z$ or $w\leq u < z \leq v$. An edge set E' is said to be non-crossing if no 2 edges in the set cross each other. The size of the maximal non-crossing edge set is denoted as $C(S).$ $C(S)$ for the example is 5, the red edges shown in Fig~\ref{fig:digraphred}.
 \begin{figure}[htpb]
   \begin{center}
   \includegraphics[width=0.7\textwidth]{digraph2.eps}
     %\resizebox{100mm}{!} {\includegraphics *{digraph2.png}}
     %\resizebox{50mm}{!} {\includegraphics *{iitm.eps}}
     \caption {The highlighted red edges belong to the maximum non-crosssing edge set}
-  %\label{fig:iitm}
+  \label{fig:digraphred}
   \end{center}
 \end{figure}
 \\
@@ -337,12 +341,12 @@ To prove the above claim it is enough to prove for a generalised example for whi
       \frac{n+i}{2} & \text{i is even} \\
    \end{cases}
 \]
-If the set of elements are from $[1,n]$, then the $\pi = \{1,\frac{n}{2}+1,2,\frac{n}{2}+2,....,\frac{n}{2},n\} $. When we split this permutation into set of sequences, Then $S$ = $\{(1,\frac{n}{2}+1),(2,\frac{n}{2}+2),(3,\frac{n}{2}+3)... (\frac{n}{2},n)\}$. The above set $S$ forms an input to 1-block merging. The Digraph for the above described sequence is shown below
+If the set of elements are from $[1,n]$, then the $\pi = \{1,\frac{n}{2}+1,2,\frac{n}{2}+2,....,\frac{n}{2},n\} $. When we split this permutation into set of sequences, Then $S$ = $\{(1,\frac{n}{2}+1),(2,\frac{n}{2}+2),(3,\frac{n}{2}+3)... (\frac{n}{2},n)\}$. The above set $S$ forms an input to 1-block merging. The Digraph for the above described sequence is shown in Fig~\ref{fig:2approx}
 \begin{figure}[htpb]
   \begin{center}
     \includegraphics[width=0.7\textwidth]{2approxtight.eps}
     \caption {Digraph}
-  %\label{fig:iitm}
+  \label{fig:2approx}
   \end{center}
 \end{figure}
 \noindent
@@ -380,7 +384,26 @@ Order graph of a permutation $\pi$ is a graph with $N$ vertices where each verte
     \item $C\subseteq E_{\pi}$ is said to be a compatible set if no two edges in $C$ interleave each other and $G(C,\pi)$ is acyclic.
     \item $c_{\pi}$ is size of maximum cardinality compatible set. 
 \end{enumerate}
+\noindent
+\textbf{Example:}\\
+Consider $\pi = $ 2 4 3 5 1 6, Fig~\ref{fig:ordergraph} shows the order graph for $\pi$, Fig~\ref{fig:orderred} Highlights compatible edge set and shows $G(C,\pi)$ is acyclic. 
+\begin{figure}[htpb]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{blocksorting.eps}
+    \caption {Order Graph for the permutation}
+  	\label{fig:ordergraph}
+  \end{center}
+\end{figure}
 
+\begin{figure}[htpb]
+  \begin{center}
+  %\includegraphics[width=0.7\textwidth]{digraph2.eps}
+    \resizebox{150mm}{!} {\includegraphics *{blocksortingred.eps}}
+    \resizebox{50mm}{!} {\includegraphics *{gcp.eps}}
+    \caption {The highlighted red edges belong to the maximum compatible edge set and $G(C,\pi)$ is acyclic}
+  \label{fig:orderred}
+  \end{center}
+\end{figure}
 %\textbf{Example:} Example is to be added...
 \noindent
 \textbf{Lemma 3.1:}\\
@@ -434,7 +457,10 @@ Using Lemma 3.4 we know that $c_\pi \leq c_\sigma + 1$ for any block move from $
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
-
+\citep{mahajan2006approximate}
+\citep{bafna1996genome}
+\cite{mahajan2008block}
+\cite{narayanaswamy2015block}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices.
 
