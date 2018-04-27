@@ -12,4 +12,5 @@
 \contentsline {section}{\numberline {2.2}2 Approximation algorithm for Block sorting}{6}{section.2.2}
 \contentsline {section}{\numberline {2.3}Upper bound and Lower bound on block merging}{11}{section.2.3}
 \contentsline {chapter}{\numberline {3}Optimal Block Sorting}{13}{chapter.3}
-\contentsline {chapter}{\numberline {A}A SAMPLE APPENDIX}{18}{appendix.A}
+\contentsline {chapter}{\numberline {4}Block sorting heuristics}{18}{chapter.4}
+\contentsline {chapter}{\numberline {A}A SAMPLE APPENDIX}{19}{appendix.A}

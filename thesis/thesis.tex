@@ -79,21 +79,12 @@ I would also like to thank my parents and sister for constanly supporting me men
 
 \abstract
 
-\noindent KEYWORDS: \hspace*{0.5em} \parbox[t]{4.4in}{\LaTeX ; Thesis;
-  Style files; Format.}
+\noindent KEYWORDS: \hspace*{0.5em} \parbox[t]{4.4in}{Block Sorting ; Block Merging;
+  Approximation Algorithm; Heuristic.}
 
 \vspace*{24pt}
 
-\noindent A \LaTeX\ class along with a simple template thesis are
-provided here.  These can be used to easily write a thesis suitable
-for submission at IIT-Madras.  The class provides options to format
-PhD, MS, M.Tech.\ and B.Tech.\ thesis.  It also allows one to write a
-synopsis using the same class file.  Also provided is a BIB\TeX\ style
-file that formats all bibliography entries as per the IITM format.
-
-The formatting is as (as far as the author is aware) per the current
-institute guidelines.
-
+\noindent 
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,12 +145,12 @@ xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
 
 \chapter{INTRODUCTION}
 \label{chap:intro}
-Mathmatics, Computer science, Informatics and Machine learning has lot of application in the field of Bio Informatics. Specific field like genome sequence matching has a lot of interesting problems for computer scientists. A Genome is a whole set of DNA. DNAs contain chromosomes which forms blocks of genome. Each chromosome contains a set of genes which are the fundamental reason for heredity. The order in which genes appear in a chromosome is responsible for its functionality, So different order implies different functionality. During molecular evolution there involves rearrangement of genes. Over the years these rearrangements are responsible for different behaviours in different species. There are some set of events which occur during a rearragement. Reversal, Translocation, Block or Strip moves are few such events. \\
+Mathmatics, Computer science, Informatics and Machine learning has lot of application in the field of Bio Informatics. Specific field like genome sequence matching has a lot of interesting problems for computer scientists. A Genome is a whole set of DNA. DNAs contain chromosomes which forms blocks of genome. Each chromosome contains a set of genes which are the fundamental reason for heredity. The order in which genes appear in a chromosome is responsible for its functionality, So different order implies different functionality. During molecular evolution there involves rearrangement of genes. Over the years these rearrangements are responsible for different behaviours in different species. There are some set of events which occur during a rearragement. Reversal, Translocation, Block or Strip moves are few such events.\\
 A Chromosome is represented as a sequence of genes. Each gene is given a mapping in number space hence a chromosome with 10 genes might look like
 $$4\text{ }10\text{ }8\text{ }6\text{ }5\text{ }3\text{ }1\text{ }2\text{ }7\text{ }9$$
-Initially in molecular biology experts were interested in local mutations and hence concentrating on genes. Later they shifted to global level gene rearragements in a chromosome. If two species contains different chromosomes $C_1$ and $C_2$, but both of them constitute same set of genes, then the similarity between the two chromosomes is defined as minimum number of primitive steps from one chromosome to other. Whenever two chromosomes were compared, one of them will be taken as a base or identity permutation and the other chromosome will be altered using primitive steps to obtain identity permutation. The primitive steps are the possible rearrangements which are Reversals, Transpositions, Block moves. The minimum number of moves to reach identity permutaition is denoted as $D(\pi)$. This distance is a measure of similarity between the two permutations. Lesser distance implies greater similarity. Finding minimum event set resulting in an identity permutation is NP-hard in case of Reversals and Block moves, whereas for transpositions the complexity remains open. For these hard problems we are in search of approximation algorithms which run in polynomial time. 
+Initially in molecular biology experts were interested in local mutations and hence concentrated on genes. Later they shifted to global level gene rearrangements in a chromosome. If two species contains different chromosomes $C_1$ and $C_2$, but both of them constitute same set of genes, then the similarity between the two chromosomes is defined as minimum number of primitive steps from one chromosome to other. Whenever two chromosomes were compared, one of them will be taken as a base or identity permutation and the other chromosome will be altered using primitive steps to obtain identity permutation. The primitive steps are the possible rearrangements which are Reversals, Transpositions, Block moves. The minimum number of moves to reach identity permutaition is denoted as $D(\pi)$. This distance is a measure of similarity between the two permutations. Lesser distance implies greater similarity. Finding minimum event set resulting in an identity permutation is NP-hard in case of Reversals and Block moves, whereas for transpositions the complexity remains open. \cite{roy2008sorting} has lower bounds and upper bounds for these primitives. There are approximation algorithms which run in polynomial time for these hard problems and a lot of research is happening in improving these approximation. 
 \section{Sorting by Reversal}
-An event in Reversal of a permutation $\pi$ = $\pi_1\pi_2....\pi_n$ is to choose a substring and reverse it. So if we reverse the substring $\pi_i...\pi_j$, then after the reversal event, $\pi = \pi_1...\pi_{i-1}\pi_j....\pi_i\pi_{j+1}\pi_n$. For example, Consider permutation 1 8 2 3 \textbf{5 6 4} 7 9 10 $\rightarrow$ 1 8 2 3 4 \textbf{6 5} 7 9 10 $\rightarrow$ 1 8 \textbf{2 3 4 5 6 7} 9 10 $\rightarrow$ 1 \textbf{8 7 6 5 4 3 2} 9 10 $\rightarrow$ 1 2 3 4 5 6 7 8 9 10. In each event the substring highlighted is reversed. Hence the distance is 4. 
+An event in Reversal of a permutation $\pi$ = $\pi_1\pi_2....\pi_n$ is to choose a substring and reverse it. So if we reverse the substring $\pi_i...\pi_j$, then after the reversal event, $\pi = \pi_1...\pi_{i-1}\pi_j....\pi_i\pi_{j+1}\pi_n$. For example, Consider permutation 1 8 2 3 \textbf{5 6 4} 7 9 10 $\rightarrow$ 1 8 2 3 4 \textbf{6 5} 7 9 10 $\rightarrow$ 1 8 \textbf{2 3 4 5 6 7} 9 10 $\rightarrow$ 1 \textbf{8 7 6 5 4 3 2} 9 10 $\rightarrow$ 1 2 3 4 5 6 7 8 9 10. In each event the substring highlighted is reversed. Hence the distance is 4. \citep{bafna1996genome} has a $\frac{7}{4}$ approximation algorithm for sorting by reversal.
 
 \section{Sorting by Transpositions}
 An event in Transposition of a permutation $\pi$ = $\pi_1\pi_2....\pi_n$ is to choose two adjacent substring and swap them. Let say in an event we transpose substring $[\pi_i,\pi_{j-1}]$ and $[\pi_j,\pi_k]$, after the event permutation $\pi = \pi_1...\pi_{i-1}\pi_j....\pi_k\pi_i....\pi_{j-1}\pi_{k+1}\pi_n$. For example, Consider permutation 7 8 1 2 \textbf{4 5 6} \textit{3} 9 $\rightarrow$ \textbf{7 8} \textit{1 2 3 4 5 6} 9 $\rightarrow$ 1 2 3 4 5 6 7 8 9. In each event the substring highlighted is swapped with the substring in italic. Hence the distance is 3.\\
@@ -182,7 +173,7 @@ Table~\ref{tab:sample} shows the current status of different sorting primitives.
 \section{Preliminaries and Definitions}
 Set of elements from $\{1,2,...,n-1,n\}$ can form different permutations. Our main aim is to sort the permutation, but with a restriction in the movements allowed. The problem of Block Sorting is to sort the given permutation with the \textbf{block moves}.\\~\\
 \textbf{Block Sorting:}\\
-Given a permutation $\pi$, it can be written as $\pi_1\pi_2.....\pi_{n-1}\pi_{n}$ where each $\pi_i \in [1,n]$ $\forall i$. A \textbf{Block} is defined as a contiguous sequence in $\pi$ such that elements are in the same order as in $id_n$, which is the Identity permutation. Now sorting a given $\pi$ with only block moves is block sorting. Finding minimum number of moves to obtain $id_n$ is a challenge which is proved to be NP-hard. The minimum number of moves is denoted as $bs(\pi)$.\\
+Given a permutation $\pi$, it can be written as $\pi_1\pi_2.....\pi_{n-1}\pi_{n}$ where each $\pi_i \in [1,n]$ $\forall i$. A \textbf{Block} is defined as a contiguous sequence in $\pi$ such that elements are in the same order as in $id_n$, which is the Identity permutation. Now sorting a given $\pi$ with only block moves is block sorting. Finding minimum number of moves to obtain $id_n$ is a challenge which is proved to be APX-hard \citep{narayanaswamy2015block}. The minimum number of moves is denoted as $bs(\pi)$.\\
 \textbf{Example:}\\
 Lets assume the permutation $\pi$ = $9,6,7,8,3,4,1,2,5.$ There are 5 blocks: (9) 	(6,7,8)(3,4)(1,2) and (5). The optimal moves which give $id_n$ is by moving block (3,4) between (1,2) and (5), hence obtaining 3 blocks (9)(6,7,8) and (1,2,3,4,5). Now by moving (9) to end of (6,7,8) followed by moving (6,7,8,9) to the end of (1,2,3,4,5) gives us $id_n$ in 3 moves.\\~\\
 \noindent
@@ -195,13 +186,13 @@ It has been proved that $bs(ker(\pi)) = bs(\pi)$. The proof is simple that any m
 \textbf{3 - approximation for block sorting:} 
 Since Block sorting is proved to be NP-hard, we will have to find approximate algorithm for it which runs in poly-time. Any sequence of block moves where each of the move is moving some block to its predecessor is a 3 approximation for Block sorting.\\
 \textbf{Proof:}
-For any block move described above the number of blocks reduce by minimum of 1 and maximum of 3. In $ker(\pi)$, the block moves looks as follows:
+Let $Blocks(\pi)$ represent number of block in $\pi$. For any block move described above the number of blocks reduce by minimum of 1 and maximum of 3. In $ker(\pi)$, the block moves looks as follows:
 \begin{enumerate}
     \item For 1, $(i),(j)...(y),(i+1),(l)$ to $(i,i+1),(j)...(y),(l)$ where $j \neq i+2$ and $y \neq l-1$
     \item For 2, $(i),(i+2)...(y),(i+1),(l)$ to $(i,i+1,i+2)...(y),(l)$ where $y \neq l-1$
     \item For 3, $(i),(i+2)...(y),(i+1),(y+1)$ to $(i,i+1,i+2)...(y,y+1)$
 \end{enumerate}
-In $id_n$, there is only one block, So we have to reduce $Blocks(\pi)$ to 1. Since any block move can reduce it only 3, $bs(\pi) \geq \frac{Blocks(\pi) - 1}{3}$. By following the procedure described each time we reduce $Blocks(\pi)$ by at least 1. Lets denote number of moves as described in the procedure as $bs-app(\pi)$ and $bs-app(\pi) \leq Blocks(\pi)-1 \leq 3bs(\pi)$. Hence the procedure described is in fact a 3 approximation for Block sorting.\\~\\
+In $id_n$, there is only one block, So we have to reduce $Blocks(\pi)$ to 1. Since a block move can reduce $Blocks(\pi)$ by at most 3, $bs(\pi) \geq \frac{Blocks(\pi) - 1}{3}$. By following the procedure described each time we reduce $Blocks(\pi)$ by at least 1. Lets denote number of moves as described in the procedure as $bs-app(\pi)$ and $bs-app(\pi) \leq Blocks(\pi)-1 \leq 3bs(\pi)$. Hence the procedure described is in fact a 3 approximation for Block sorting.\\~\\
 \noindent
 \textbf{\textit{K-}Block Merging:}\\
 This problem is similar to block sorting but with more restriction in the moves allowed.\\
@@ -227,7 +218,7 @@ So every $K$ block moves can lead to a potential block spanning over $(K+1)$ seq
 $$bs(\pi) \leq bm(\pi) \leq bs(\pi)(1+\frac{1}{K})$$
 
 \section{2 Approximation algorithm for Block sorting}
-$K-$Block merging is proved to be NP hard for $K \geq$ 2 by reducing $MAX-E3-SAT$. But there is an algorithm which is optimal for $1-$Block Merging problem. So for $K = 1$ an exact algorithm which gives $(1+\frac{1}{K}) = 2$ $-$ approximation for block sorting is obtained from a digraph constructed based on the set of sequences.\\~\\
+$K-$Block merging is proved to be NP hard for $K \geq$ 2 by reducing $MAX-E3-SAT$ \citep{narayanaswamy2015block}. But there is an algorithm which is optimal for $1-$Block Merging problem. So for $K = 1$ an exact algorithm which gives $(1+\frac{1}{K}) = 2$ $-$ approximation for block sorting is obtained from a digraph constructed based on the set of sequences.\\~\\
 \noindent
 \textbf{Construction of Digraph G:}\\
 Let the sequences $S = \{S_1,S_2 .. S_{n-1},S_n\}$ correspond to $\pi$. V, the vertex set of G consists of all the elements in the permutation. The edge set E  = $\{(u,v)| u<v$ and $\exists i\in [1,n], u \in S_i$ and $v \in S_i \}$.\\
@@ -257,7 +248,7 @@ Lets assume the permutation $\pi$ = 9,6,7,8,3,4,1,2,5. The set $S = \{(9),(6,7,8
 \end{figure}
 \\
 \noindent
-There is a \textbf{Polynomial time algorithm using Dynamic Programming to find the $C(S)$}. Let $DP(i,j)$ represent the maximum non-crossing set for the sub-graph with the vertices $[i,j]$. \\
+There is a \textbf{Polynomial time algorithm using Dynamic Programming to find the \textit{C(S)}}. Let $DP(i,j)$ represent the maximum non-crossing set for the sub-graph with the vertices $[i,j]$. \\
 \textbf{Base case:}
 \begin{enumerate}
     \item $DP(i,i)$ = 0 $\forall i$.
@@ -277,7 +268,7 @@ The explanation for the construction of $DP(i,j)$ using the above procedure is a
 \end{enumerate}
 \noindent
 \textbf{Obtaining optimal moves for 1-Block Merging}\\
-Obtaining optimal set of moves starts by finding $bm(\pi)$. Which follows as a result of following lemmas.\\
+Obtaining optimal set of moves starts by finding $bm(\pi)$. Which follows as a result of following lemmas from \citep{mahajan2006approximate}.\\
 \textbf{Lemma 2.1:}\\
 Any valid block move from $S$ which results in $S'$ follows that $C(S')$ $\leq$ $C(S)$ + 1\\
 \textbf{Proof:}\\
@@ -351,8 +342,8 @@ If the set of elements are from $[1,n]$, then the $\pi = \{1,\frac{n}{2}+1,2,\fr
 \end{figure}
 \noindent
 As we can see every edge crosses every other edge. So $C(S) = 1$, which means we can take only one edge in the non-crossing set. As we have proved before that the 2 - approximation algorithm takes exactly $n-1-C(S)$ ($(i.e)$ $n-2$) steps to complete the sorting procedure.\\
-Now it is left to prove that the optimal procedure sorts the sequence in $\frac{n}{2} - 1$ steps. Without loss of generality assume that the non-crossing edge is $(\frac{n}{2},n)$. So all the blocks from 1 to $\frac{n}{2} - 1$ are free and similarly all blocks from $\frac{n}{2} - 1$ to $n-1$ are free. Lets move these blocks with one elements from $\frac{n}{2} + 1$ to $n-1$, to their predecessors. this will increase $C(S)$ by one with each move finally resulting in $1,2,...,n$. Optimal algorithm sorts it in  $\frac{n}{2} - 1$ steps, but the $2-$approximation algorithm takes \textit{n} steps. So this 2-approximation is tight.\\
-The optimal moves are all valid moves even in 1-block merging, which will result with $S = \{(1),(2),(3)...(\frac{n}{2}-1),(\frac{n}{2},...,n-1,n)\}$. The remaining $\frac{n}{2} - 1$ steps are to make all the elements to be in a single sequence.\\~\\
+Now it is left to prove that the optimal procedure sorts the sequence in $\frac{n}{2} - 1$ steps. Without loss of generality assume that the non-crossing edge is $(\frac{n}{2},n)$. So all the blocks from 1 to $\frac{n}{2} - 1$ are free and similarly all blocks from $\frac{n}{2} - 1$ to $n-1$ are free. Lets move these blocks with one elements from $\frac{n}{2} + 1$ to $n-1$, to their predecessors. this will increase $C(S)$ by one with each move finally resulting in $1,2,...,n$. Optimal block sorting algorithm sorts it in  $\frac{n}{2} - 1$ steps, but the block merging algorithm takes \textit{n}-2 steps. So this 2-approximation is tight.\\
+The optimal block sorting moves are all valid moves even in 1-block merging, which will result with $S = \{(1),(2),(3)...(\frac{n}{2}-1),(\frac{n}{2},...,n-1,n)\}$. The remaining $\frac{n}{2} - 1$ steps are to make all the elements to be in a single sequence.\\~\\
 \textbf{Lower Bound for \textit{K-}block merging:}\\
 Lemma 2.1 proves that $C(S') \leq C(S) + 1$, for any valid block move in 1-block merging. So if we follow the similar analysis for $K-$block merging, the block moves are similar both in 1-block merging and $K-$block merging except that the block can span over $K$ sequences.\\~\\
 \textbf{Lemma 2.4:}\\
@@ -407,7 +398,7 @@ Consider $\pi = $ 2 4 3 5 1 6, Fig~\ref{fig:ordergraph} shows the order graph fo
 %\textbf{Example:} Example is to be added...
 \noindent
 \textbf{Lemma 3.1:}\\
-Every compatible edge set $C$ contains all unit edges from $E_{\pi}$.\\~\\
+Every compatible edge set $C$ contains all unit edges from $E_{\pi}$.\citep{mahajan2008block}\\~\\
 \textbf{Lemma 3.2:}\\
 Let $\alpha$ be a free block with respect to $C$. For any valid block move using $\alpha$ from a permutation $\pi$ to obtain $\sigma$, then $c_\sigma \geq c_\pi$.\\
 \textbf{Proof:}\\
@@ -457,10 +448,18 @@ Using Lemma 3.4 we know that $c_\pi \leq c_\sigma + 1$ for any block move from $
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
-\citep{mahajan2006approximate}
-\citep{bafna1996genome}
-\cite{mahajan2008block}
-\cite{narayanaswamy2015block}
+
+\noindent Though we have an algorithm which executes in polynomial time, we cannot find maximum compatible set in polynomial time. 
+\chapter{Block sorting heuristics}
+First we list two heuristics from \citep{mahajan2008block}. For each of the heuristics a tight example for 2-approximation is also given in it.\\
+In the proof for tightness of 2 approximation block sorting algorithm, we have said that the additional moves that we require for block merging are redundant moves.\\ 
+\textit{\textbf{Heuristic 1:}} Run Block merging algorithm and remove redundant moves.\\
+\textit{\textbf{Heuristic 2:}} The heuristic function for a permutation $\pi$ is $bm(\pi)$. A block sorting move for a permutation $\pi$ is made with the help of this heuristic function. For a block move $b$ on $\pi$ which results in a permutation $\pi^b$, we calculate $bm(\pi^b)$ which is its value. We choose a block $b$ which has its value to be minimum.\\
+This heuristic performs so well on many cases that it gives optimal solution for them, but there exist an example for which it is a 2-approximation. The identified problem with this heuristic is the tie breaking method. During a tie few locally bad moves are actually globally optimal. The problem with many such heuristic is the tie breaking mechanism. \textbf{A possible solution is to increase of depth of analysis from 1, So that local optimals can be avoided.}\\
+The other approach for block sorting is to find a compatible set for the order graph. We know that maximum non-crossing edge set for $\pi$ is a compatible edge set.
+  
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices.
 
