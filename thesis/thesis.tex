@@ -84,7 +84,7 @@ I would also like to thank my parents and sister for constanly supporting me men
 
 \vspace*{24pt}
 
-\noindent 
+\noindent Block sorting is a NP-hard problem which has applications in Biology specifically genome sequence matching. We need a P time solution, so we look for approximate solutions for the problem. Any greedy set of moves gives a 3-approximation. There is a 2-approximation for Block sorting using Block merging which is a relaxation to the original problem. Obtaining a better than 2 approximation has been open for a decade. In order to obtain a better approximation a new relaxation $K$-block merging was introduced whose optimal solution was proved to be 1 + $\frac{1}{K}$ approximation. Finding optimal solution for K-block merging was proved to be NP-hard for $K\geq 2$. So in the process of extending Block merging algorithm to find an approximate algorithm for $K$-Block merging several heuristics were formed which performs better than block merging in many cases but there are tight example which proves it to be a 2 approximation. There is an exact algorithm for Block sorting with order graph, in which finding compatible set is NP-hard. So finding a suboptimal compatible set which performs better than block merging algorithm is the approach followed. Heuristics for finding a good suboptimal compatible set has been discussed in the following chapters.
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -456,19 +456,25 @@ In the proof for tightness of 2 approximation block sorting algorithm, we have s
 \textit{\textbf{Heuristic 1:}} Run Block merging algorithm and remove redundant moves.\\
 \textit{\textbf{Heuristic 2:}} The heuristic function for a permutation $\pi$ is $bm(\pi)$. A block sorting move for a permutation $\pi$ is made with the help of this heuristic function. For a block move $b$ on $\pi$ which results in a permutation $\pi^b$, we calculate $bm(\pi^b)$ which is its value. We choose a block $b$ which has its value to be minimum.\\
 This heuristic performs so well on many cases that it gives optimal solution for them, but there exist an example for which it is a 2-approximation. The identified problem with this heuristic is the tie breaking method. During a tie few locally bad moves are actually globally optimal. The problem with many such heuristic is the tie breaking mechanism. \textbf{A possible solution is to increase of depth of analysis from 1, So that local optimals can be avoided.}\\
-The other approach for block sorting is to find a compatible set for the order graph. We know that maximum non-crossing edge set for $\pi$ is a compatible edge set.
-  
-
+\section{Approximation algorithms using compatible set}
+Finding optimal compatible set for a given edge set in an order graph is hard, but when the edge set contains edges with a property that interleaving by position implies interleaving by value, then we can find a optimal substructure for the problem, hence we can find optimal solution using Dynamic Programming. So we can construct approximation algorithms if we could find a good compatible set with an edge set that satisfies the above property. Block merging is one such approximation for finding a compatible set. The edges of a digraph is only within a sequence which is an increasing sequence and edges between two sequences do not cross each other. If edge $(a,b)$ and $(c,d)$ interleaves by position then $\pi^{-1}_a \leq \pi^{-1}_c < \pi^{-1}_b\leq \pi^{-1}_d$. Because $(a,b)$ and $(c,d)$ are part of increasing sequence, $a \leq c < b\leq d$.\\
+ So our aim is to find a better compatible edge set when compared to maximum non-crossing edge set by adding few more edges which also satisfies the property that if two edges interleave by position then they interleave by value. By doing this we can possibly increase $c_\pi$ and hence we can get a better approximation than 2. The approach is to find an increasing sequence that do not violate the property with the edges in digraph.\\
+\textit{\textbf{Heuristic 3:}} Consider the digraph constructed for Block merging, we are going to find a maximum increasing subsequence consisting of the first and last elements of each sequence. In this sequence for all $i<j$ add edge $(i,j)$ to the edge set.\\
+\textbf{Example:}\\
+Consider $\pi = $ $\{1,5,2,6,3,7,9,4,8\}$. Corresponding set $S$ = \{(1,5),(2,6),(3,7,9) ,(4,8)\}. The edges in the digraph are $E =$ $\{(1,5),(2,6),(3,7),(3,9),(7,9),(4,8)\}$. First and last elements sequence are $A = $ $\{1,5,2,6,3,9,4,8\}$. So we find maximum increasing subsequence of A which is $\{1,2,3,4,8\}$. New edge set $E' = E \cup$ \{(1,2),(1,3),(1,4),(1,8),(2,3),(2,4),(2,8),(3,4),(3,8),(4,8)\}.\\
+\textbf{Lemma 4.1:}\\ Adding these edges will not violate the property that interleaving by position implies interleaving by value.\\
+\textbf{Proof:}\\
+Let initial edges in the digraph be denoted as $E$ and the new edges added be denoted as $N$. Edges within $N$ which interleave each other satify the property because they are part of increasing sequence, same for edges within $E$. Edges in $N$ consists only of boundary points in the sequence. If an edge from $E$ cross an edge from $N$ by position, then the edge from $E$ must have either a starting point or end point to be a part of the edge from $N$, Because an edge from $E$ cannot cross a boundary. When interleaving by position implies an intersection of vertices, this in fact implies interleaving by value.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices.
 
-\appendix
+%\appendix
 
-\chapter{A SAMPLE APPENDIX}
+%\chapter{A SAMPLE APPENDIX}
 
-Just put in text as you would into any chapter with sections and
-whatnot.  Thats the end of it.
+%Just put in text as you would into any chapter with sections and
+%whatnot.  Thats the end of it.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography.
@@ -481,13 +487,13 @@ whatnot.  Thats the end of it.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % List of papers
 
-\listofpapers
+%\listofpapers
 
-\begin{enumerate}  
-\item Authors....  \newblock
- Title...
-  \newblock {\em Journal}, Volume,
-  Page, (year).
-\end{enumerate}  
+%\begin{enumerate}  
+%\item Authors....  \newblock
+% Title...
+%  \newblock {\em Journal}, Volume,
+%  Page, (year).
+%\end{enumerate}  
 
 \end{document}
