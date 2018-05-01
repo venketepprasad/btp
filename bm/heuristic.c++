@@ -105,7 +105,8 @@ int main()
 		cout<<incseq[i]<<" ";
 	cout<<"\n";
 	// Adding additional edges according to heuristic
-	maxseq = findmax(incseq);
+	// maxseq = findmax(incseq);
+	maxseq.push_back(1);maxseq.push_back(2);maxseq.push_back(8);maxseq.push_back(10);
 	for(i=0;i<maxseq.size();i++)
 	{
 		cout<<maxseq[i]<<" ";
