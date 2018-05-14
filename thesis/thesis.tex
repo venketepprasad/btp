@@ -459,7 +459,7 @@ This heuristic performs so well on many cases that it gives optimal solution for
 \section{Approximation algorithms using compatible set}
 Finding optimal compatible set for a given edge set in an order graph is hard, but when the edge set contains edges with a property that interleaving by position implies interleaving by value, then we can find a optimal substructure for the problem, hence we can find optimal solution using Dynamic Programming. So we can construct approximation algorithms if we could find a good compatible set with an edge set that satisfies the above property. Block merging is one such approximation for finding a compatible set. The edges of a digraph is only within a sequence which is an increasing sequence and edges between two sequences do not cross each other. If edge $(a,b)$ and $(c,d)$ interleaves by position then $\pi^{-1}_a \leq \pi^{-1}_c < \pi^{-1}_b\leq \pi^{-1}_d$. Because $(a,b)$ and $(c,d)$ are part of increasing sequence, $a \leq c < b\leq d$.\\
  So our aim is to find a better compatible edge set when compared to maximum non-crossing edge set by adding few more edges which also satisfies the property that if two edges interleave by position then they interleave by value. By doing this we can possibly increase $c_\pi$ and hence we can get a better approximation than 2. The approach is to find an increasing sequence that do not violate the property with the edges in digraph.\\
-\textit{\textbf{Heuristic 3:}} Consider the digraph constructed for Block merging, we are going to find a maximum increasing subsequence consisting of the first and last elements of each sequence. In this sequence for all $i<j$ add edge $(i,j)$ to the edge set.\\
+\textit{\textbf{Heuristic 3:}} Consider the digraph constructed for Block merging, we are going to find a maximum increasing subsequence consisting of the first and last elements of each sequence. In this sequence for all $i<j$ add edge $(i,j)$ to the edge set if it satisfies the property $(i,j)$ containing any edge $(a,b)$ by position implies containing by value and vice-a-versa.\\
 \textbf{Example:}\\
 Consider $\pi = $ $\{1,5,2,6,3,7,9,4,8\}$. Corresponding set $S$ = \{(1,5),(2,6),(3,7,9) ,(4,8)\}. The edges in the digraph are $E =$ $\{(1,5),(2,6),(3,7),(3,9),(7,9),(4,8)\}$. First and last elements sequence are $A = $ $\{1,5,2,6,3,9,4,8\}$. So we find maximum increasing subsequence of A which is $\{1,2,3,4,8\}$. New edge set $E' = E \cup$ \{(1,2),(1,3),(1,4),(1,8),(2,3),(2,4),(2,8),(3,4),(3,8),(4,8)\}.\\
 \textbf{Lemma 4.1:}\\ Adding these edges will not violate the property that interleaving by position implies interleaving by value.\\
@@ -470,13 +470,50 @@ Let initial edges in the digraph be denoted as $E$ and the new edges added be de
 \textbf{Proof:}\\
 Lets build a parent children relation based on the subproblems created. If a subproblem $F$ is created with the maximum increasing sequence of another subproblem $G$, then $G$ is parent to $F$. The claim is that edges added by $F$ do not cross $G$, This is because the subproblem $F$ is between 2 consecutive elements of the increasing sequence in $G$. So all the edges are contained by $G$. Since none of the child edges interleave parent edges, it is left to prove that none of the added edges interleave the edges of digraph. This can be proved by the same argument used for Lemma 4.1. Since all the edges added have endpoints to be start and end of sequences, interleaving by position will imply having a common point which implies interleaving by value.
 \section{Empirical analysis of the Heuristic 3}
-Performance of \textit{Heuristic 3} is far better than Block merging that in most of the cases it gives optimal solution. The aim of this empirical analysis is to run the \textit{Heuristic 3} implementation and exact block sorting implementation for all the permutation with various bounds on number of elements and to test its approximation. In the analysis, for all permutations for $n \leq 9$, \textit{Heuristic 3} gives a better than \textit{2} approximation. It gives a worst case \textit{1.667}-approximation for those cases. The worst case example for $n\leq 9$ is as follows:
-$$3\text{ } 5\text{ } 4\text{ } 6\text{ } 8\text{ } 1\text{ } 7\text{ } 2$$
-For which exact block sorting algorithm takes 3 steps and \textit{Heuristic 3} takes 5 steps. Hence a $\frac{5}{3}$ approximation.\\
-For $n=10$ there is an example for which it is a \textit{2} approximation and the example is as follows:
-$$1\text{ } 3\text{ } 7\text{ } 9\text{ } 4\text{ } 2\text{ } 5\text{ } 8\text{ } 6\text{ } 10$$
-Exact block sorting algorithm takes 3 moves whereas \textit{Heuristic 3} takes 6 moves. The problem leading to poor performance is there are multiple increasing sequences and choosing one random candidate among them provides a bad result. In the example above, $A = \{1,9,4,2,8,6,10\}$. We have several maximum increasing sequences out of which let us consider \textit{M1} = $\{1,4,8,10\}$ and \textit{M2} $= \{1,2,8,10\}$. When we consider \textit{M1} for adding new edges we get a \textit{2} approximation, but when we consider \textit{M2} we get a \textit{1.667} approximation. So choice of the maximum increasing sequence affects performance. Now a new question arises as how to find which maximum increasing sequence is the best.\\
-\textbf{FUTURE WORK: Empirical Analysis for \textit{Heuristic 4}}.      
+Performance of \textit{Heuristic 3} is far better than Block merging that in most of the cases it gives optimal solution. The aim of this empirical analysis is to run the \textit{Heuristic 3} implementation and exact block sorting implementation for all the permutation with various bounds on number of elements and to test its approximation. In the analysis, for all permutations for $n \leq 6$, \textit{Heuristic 3} gives a better than \textit{2} approximation. It gives a worst case \textit{1.5}-approximation for those cases. The worst case example for $n\leq 6$ is as follows:
+$$1\text{ } 3\text{ } 2\text{ } 5\text{ } 4$$
+For which exact block sorting algorithm takes 2 steps and \textit{Heuristic 3} takes 3 steps. Hence a $\frac{3}{2}$ approximation.\\
+For $n=7$ there is an example for which it is a \textit{2} approximation and the example is as follows:
+$$1\text{ } 3\text{ } 6\text{ } 4\text{ } 2\text{ } 5\text{ } 7$$
+Exact block sorting algorithm takes 2 moves whereas \textit{Heuristic 3} takes 4 moves.\\
+Table~\ref{tab:heursat1} shows the performance of \textit{Heuristic 3}.
+\begin{table}[htbp]
+  \caption{Performance statistics of \textit{Heuristic 3} for all cases from One to Ten factorial}
+  \begin{center}
+  \begin{tabular}[c]{|l|c|c|} \hline
+    \textbf{Scenarios} & \textbf{Occurrences}\\ \hline
+    Optimal solution & 2599319  \\ \hline
+    Beating block merging & 1481012 \\ \hline
+    2 approximation & 285 \\ \hline
+  \end{tabular}
+  \label{tab:heursat1}
+  \end{center}
+\end{table}
+
+\textbf{Areas of improvement:}
+\begin{enumerate}
+	\item Greedy on checking whether containing of edges by position implying to containing of edges by value.
+	\item Choosing a random increasing sequence when there are multiple maximal increasing sequence available.
+\end{enumerate}
+   
+\section{Empirical analysis of the Heuristic 4}
+Table~\ref{tab:heursat2} shows the performance of \textit{Heuristic 4}.
+\begin{table}[htbp]
+  \caption{Performance statistics of \textit{Heuristic 4} for all cases from One to Ten factorial}
+  \begin{center}
+  \begin{tabular}[c]{|l|c|c|} \hline
+    \textbf{Scenarios} & \textbf{Occurrences}\\ \hline
+    Optimal solution & 2648405  \\ \hline
+    Beating Heuristic 3 &  55095 \\ \hline
+    Beating block merging &  1522498 \\ \hline
+    2 approximation & 285 \\ \hline
+  \end{tabular}
+  \label{tab:heursat2}
+  \end{center}
+\end{table}
+Performance of \textit{Heuristic 4} is better than \textit{Heuristic 3} according to the performance statistics above. The aim of this empirical analysis is to run the \textit{Heuristic 4} implementation and exact block sorting implementation for all the permutation with various bounds on number of elements and to test its approximation. 
+
+%Performance of \textit{Heuristic 4} is better than \textit{Heuristic 4}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices.
 

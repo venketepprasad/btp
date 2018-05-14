@@ -49,7 +49,7 @@ vector<ll> findmax(vector<ll>& v)
 
 int main()
 {
-	ll n,i,x,y,j,k,l,en,st,z,predz,predx,predy,succz,succy,succx,num,x1,y1,z1;
+	ll n,i,x,y,j,k,l,en,st,z,predz,predx,predy,succz,succy,succx,num,x1,y1,z1,found;
 	num = 0;
 	// Input n and a permutation of [1,n]
 	cin>>n;
@@ -59,13 +59,15 @@ int main()
 		cin>>x;
 		v.push_back(x);
 	}
-
+	int pos[n+2];
 	// Construction of sequences
 	vector<ll> seq,incseq,maxseq;
+	vector<pair<ll,ll> > edgevec;
 	vector<vector<ll> > sets;
 	for(i=0;i<n;i++)
 	{
 		seq.push_back(v[i]);
+		pos[v[i]] = i;
 		if(i<n-1)
 		{
 			if(v[i+1] < v[i])
@@ -97,6 +99,7 @@ int main()
 			{
 				// if(sets[i][j] < sets[i][k])
 					edges[sets[i][j]][sets[i][k]] = 1;
+					edgevec.push_back(make_pair(sets[i][j],sets[i][k]));
 			}
 		}
 	}
@@ -105,13 +108,40 @@ int main()
 		cout<<incseq[i]<<" ";
 	cout<<"\n";
 	// Adding additional edges according to heuristic
-	// maxseq = findmax(incseq);
-	maxseq.push_back(1);maxseq.push_back(2);maxseq.push_back(8);maxseq.push_back(10);
+	maxseq = findmax(incseq);
+	// maxseq.push_back(1);maxseq.push_back(2);maxseq.push_back(8);maxseq.push_back(10);
 	for(i=0;i<maxseq.size();i++)
 	{
 		cout<<maxseq[i]<<" ";
 		for(j=i+1;j<maxseq.size();j++)
-			edges[maxseq[i]][maxseq[j]] = 1;
+		{
+			found = 0;
+			for(k=0;k<edgevec.size();k++)
+			{
+				tie(st,en) = edgevec[k];
+				if(pos[maxseq[i]] > pos[st] && pos[maxseq[j]] < pos[en])
+				{
+					if(maxseq[i] <= st || maxseq[j] >= en)
+					{
+						found = 1;
+						break;			
+					}
+				}
+				else if(pos[maxseq[i]] < pos[st] && pos[maxseq[j]] > pos[en])
+				{
+					if(maxseq[i] >= st || maxseq[j] <= en)
+					{
+						found = 1;
+						break;			
+					}
+				}
+			}
+			if(found == 0)
+			{
+				edges[maxseq[i]][maxseq[j]] = 1;
+				edgevec.push_back(make_pair(maxseq[i],maxseq[j]));
+			}
+		}
 	}
 	cout<<endl;
 	// Computing maximum non-crossing set using DP
