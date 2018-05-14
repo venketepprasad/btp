@@ -327,7 +327,10 @@ int main()
 			hm[x] = val;
 			// cout<<x<<" "<<val<<" "<<y<<"\n";
 			if(y<y2)
+			{
+				cout<<x<<endl;
 				countless++;
+			}
 			if(y == val)
 				countequal++;
 			if((int)(y*1.0/val) == 2)

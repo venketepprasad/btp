@@ -524,7 +524,10 @@ int main()
 			if(y<y3)
 				countblock++;
 			if(y<y2)
+			{
+				cout<<x<<" "<<y<<" "<<y2<<"\n";
 				countless++;
+			}
 			if(y == val)
 				countequal++;
 			if((int)(y*1.0/val) == 2)
